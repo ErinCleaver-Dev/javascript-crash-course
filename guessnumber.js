@@ -40,7 +40,7 @@ let guesses = [];
     displayHistory = () => {
         let list = "<ul class='list-group'>";
             guesses.forEach( guess => 
-                list += `<li class="list-group-item">${guess}</li>`
+                list += `<li class="list-group-item"> You guessed ${guess}</li>`
             )
         list += '</ul>'
         document.getElementById("history").innerHTML = list;
