@@ -1,24 +1,25 @@
-let guesses = 0;
 let correctNumber = 0;
 
     playGame = () => {
         let guess =document.getElementById('number-guess').value;
-        console.log(this.correctNumber)
-        if(guess == this.correctNumber) {
-            console.log("You won!");
-            this.guess = 0;
-            correctNumber = 0;
-        } else if(guess > this.correctNumber) {
-            console.log("To high!");
-        } else if(guess < this.correctNumber) {
-            console.log("To low!");
-        }
+        console.log(correctNumber)
+        displayResult(guess, correctNumber)
 
 
 
     }
 
     initGame = ()=>{
+    }
+
+    displayResult = (guess, correctNumber) =>{
+        if(guess == correctNumber) {
+            console.log("You won!");
+        } else if(guess > correctNumber) {
+            console.log("To high!");
+        } else if(guess < correctNumber) {
+            console.log("To low!");
+        }
     }
 
     getRandomNumber = () =>{
