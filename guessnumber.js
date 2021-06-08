@@ -1,23 +1,36 @@
-class GuessNumber{
-    constructor() {
-        this.guesses = 0;
-        this.correctNumber = 0;
+let guesses = 0;
+let correctNumber = 0;
+
+    playGame = () => {
+        let guess =document.getElementById('number-guess').value;
+        console.log(this.correctNumber)
+        if(guess == this.correctNumber) {
+            console.log("You won!");
+            this.guess = 0;
+            correctNumber = 0;
+        } else if(guess > this.correctNumber) {
+            console.log("To high!");
+        } else if(guess < this.correctNumber) {
+            console.log("To low!");
+        }
+
+
+
     }
 
-    playGame(){
+    initGame = ()=>{
     }
 
-    initGame(){
+    getRandomNumber = () =>{
+        let randomNumber = (Math.random() * 100) + 1;
+        randomNumber = Math.floor(randomNumber);
+        correctNumber = randomNumber;
     }
 
-    getRandomNumber(){
-        
+    saveGuessHistory = (guess) => {
     }
 
-    saveGuessHistory(guess) {
-    }
-
-    displayHistory() {
+    displayHistory = () => {
         let index; // TODO
         let list = "<ul class='list-group'>";
         // *CODE GOES BELOW HERE *
@@ -25,7 +38,7 @@ class GuessNumber{
         document.getElementById("history").innerHTML = list;
     }
 
-    getDialog(dialogType, text){
+    getDialog = (dialogType, text) =>{
         let dialog;
         switch(dialogType){
           case "warning":
@@ -40,7 +53,7 @@ class GuessNumber{
         return dialog;
     }
 
-    showYouWon(){
+    showYouWon = () =>{
         const text = "Awesome job, you got it!"
         /**
          * Retrieve the dialog using the getDialog() function
@@ -52,7 +65,7 @@ class GuessNumber{
         document.getElementById("result").innerHTML = dialog;
     }
 
-    showNumberAbove(){
+    showNumberAbove = () => {
         const text = "Your guess is too high!"
         /**
          * Retrieve the dialog using the getDialog() function
@@ -63,7 +76,7 @@ class GuessNumber{
       
         document.getElementById("result").innerHTML = dialog;
     }
-    showNumberBelow(){
+    showNumberBelow = () =>{
         const text = "Your guess is too low!"
         /**
          * Retrieve the dialog using the getDialog() function
@@ -74,11 +87,10 @@ class GuessNumber{
       
         document.getElementById("result").innerHTML = dialog;
     }
-}
 
-guessNumberGame = new GuessNumber();
 
 window.onload = function() {
-    document.getElementById("number-submit").addEventListener("click", guessNumberGame.playGame);
-    document.getElementById("restart-game").addEventListener("click", guessNumberGame.initGame)
+    document.getElementById("number-submit").addEventListener("click", playGame);
+    document.getElementById("restart-game").addEventListener("click", initGame)
+    getRandomNumber();
 }
