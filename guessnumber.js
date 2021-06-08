@@ -1,24 +1,29 @@
 let correctNumber = 0;
+let guesses = [];
+
 
     playGame = () => {
         let guess =document.getElementById('number-guess').value;
         console.log(correctNumber)
         displayResult(guess, correctNumber)
-
-
-
+        saveGuessHistory(guess)
+        displayHistory()
     }
 
     initGame = ()=>{
+        randomNumber = getRandomNumber();
+        guesses = [];
+        document.getElementById("history").innerHTML = "";
+        document.getElementById("result").innerHTML = "";
     }
 
-    displayResult = (guess, correctNumber) =>{
+    displayResult = (guess) =>{
         if(guess == correctNumber) {
-            console.log("You won!");
+            showYouWon()
         } else if(guess > correctNumber) {
-            console.log("To high!");
+            showNumberAbove()
         } else if(guess < correctNumber) {
-            console.log("To low!");
+            showNumberBelow()
         }
     }
 
@@ -29,12 +34,14 @@ let correctNumber = 0;
     }
 
     saveGuessHistory = (guess) => {
+        guesses.push(guess);
     }
 
     displayHistory = () => {
-        let index; // TODO
         let list = "<ul class='list-group'>";
-        // *CODE GOES BELOW HERE *
+            guesses.forEach( guess => 
+                list += `<li class="list-group-item">${guess}</li>`
+            )
         list += '</ul>'
         document.getElementById("history").innerHTML = list;
     }
@@ -56,24 +63,15 @@ let correctNumber = 0;
 
     showYouWon = () =>{
         const text = "Awesome job, you got it!"
-        /**
-         * Retrieve the dialog using the getDialog() function
-         * and save it to variable called dialog
-         * HINT: Use the 'won' and text parameters 
-         */
-        // *CODE GOES BELOW HERE *
-      
+        
+        let dialog = getDialog("won", text);
         document.getElementById("result").innerHTML = dialog;
     }
 
     showNumberAbove = () => {
         const text = "Your guess is too high!"
-        /**
-         * Retrieve the dialog using the getDialog() function
-         * and save it to variable called dialog
-         * HINT: Use the 'warning' and text parameters 
-         */
-        // *CODE GOES BELOW HERE *
+        let dialog = getDialog("warning", text);
+
       
         document.getElementById("result").innerHTML = dialog;
     }
@@ -85,6 +83,8 @@ let correctNumber = 0;
          * HINT: Use the 'warning' and text parameters 
          */
         // *CODE GOES BELOW HERE *
+        let dialog = getDialog("warning", text);
+
       
         document.getElementById("result").innerHTML = dialog;
     }
